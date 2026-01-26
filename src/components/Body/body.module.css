@@ -79,4 +79,29 @@
       line-height: 1.4;
     }
   }
+
+
+  @media (max-width: 393px) {
+    .features {
+      padding: 60px 16px;
+    }
+  
+    .cards {
+      gap: 12px;
+    }
+  
+    .feature {
+      padding: 16px 10px;
+    }
+  
+    .feature h3 {
+      font-size: 0.9rem;
+    }
+  
+    .feature p {
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+  }
+  
   

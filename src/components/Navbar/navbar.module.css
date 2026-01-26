@@ -142,4 +142,28 @@
       display: none;
     }
   }
+  @media (max-width: 393px) {
+    .logoText {
+      display: none;
+    }
+  
+    .links a {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  
+    .actions {
+      gap: 10px;
+    }
+  
+    .signIn,
+    .primary {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+  
+    .hideOnMobile {
+      display: none;
+    }
+  }
   

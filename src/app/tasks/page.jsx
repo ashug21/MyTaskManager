@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./tasks.module.css";
 import Navbar from "@/components/Navbar/page";
+import Image from "next/image";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -38,6 +39,51 @@ const Tasks = () => {
     });
   };
 
+  const deleteUserTask = async(id) => {
+
+    if (!confirm("Are you sure you want to delete this Comment?")){
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/addtask/${id}`,{
+        method : "DELETE",
+      });
+
+      if (!res.ok) {
+        console.log("Failed to delete Comment");
+        return;
+      }
+
+      alert("Deleted Successfully");
+      getTaskData();
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const updateStatus = async(id) => {
+
+    try {
+      
+      const res = await fetch(`/api/addtask/${id}`,{
+        method : "PATCH",
+      });
+
+      if(!res.ok){
+        console.log("Failed to update");
+        return;
+      }
+
+      alert("Updated Successfully");
+      getTaskData();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -47,17 +93,29 @@ const Tasks = () => {
         <div className={styles.grid}>
           {tasks.map((task) => (
             <div key={task.id} className={styles.card}>
+              {/* TOP ROW */}
               <div className={styles.cardHeader}>
-                <span className={styles.category}>{task.category}</span>
-                <span
-                  className={`${styles.status} ${
-                    task.status === "completed"
-                      ? styles.completed
-                      : styles.pending
-                  }`}
-                >
-                  {task.status || "pending"}
-                </span>
+                <div className={styles.left}>
+                  <span className={styles.category}>{task.category}</span>
+                  <span
+                    className={`${styles.status} ${
+                      task.status === "completed"
+                        ? styles.completed
+                        : styles.pending
+                    }`}
+                  >
+                    {task.status || "pending"}
+                  </span>
+                </div>
+
+                <Image
+                onClick={ () => deleteUserTask(task.id)}
+                  src="/bin.png"
+                  alt="bin"
+                  width={22}
+                  height={22}
+                  className={styles.icon}
+                />
               </div>
 
               <h3 className={styles.title}>{task.title}</h3>
@@ -65,10 +123,15 @@ const Tasks = () => {
 
               <p className={styles.description}>{task.description}</p>
 
+              {/* BOTTOM ROW */}
               <div className={styles.footer}>
                 <span className={styles.deadline}>
                   📅 {formatSmartDate(task.deadline)}
                 </span>
+
+                <button onClick={() =>updateStatus(task.id)} className={styles.toggleBtn}>
+                  Change Status
+                </button>
               </div>
             </div>
           ))}
