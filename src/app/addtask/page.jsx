@@ -1,0 +1,144 @@
+"use client";
+
+import Navbar from "@/components/Navbar/page";
+import styles from "./addtask.module.css";
+import { useState } from "react";
+
+const TaskForm = () => {
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [status, setStatus] = useState("");
+
+
+  const handleAddTask = async(e) => {
+    e.preventDefault();
+    try {
+
+       const res = await fetch("/api/addtask",{
+
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+            title , 
+            subtitle , 
+            category , 
+            description , 
+            deadline , 
+            status
+        })
+       });
+
+       const data = await res.json();
+
+       if(!res.ok){
+        console.log("Error adding task");
+        return;
+       }
+
+       alert("SuccessFully added Task");
+
+       setTitle("");
+       setSubTitle("");
+       setCategory("");
+       setDescription("");
+       setStatus("");
+       setDeadline("");
+        
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+
+  return (
+    <div>
+      <Navbar />
+
+      <div className={styles.wrap}>
+        <div className={styles.card}>
+          <h2 className={styles.title}>Create Task</h2>
+          <p className={styles.subtitle}>
+            Organize your work with clarity and deadlines
+          </p>
+
+          <form className={styles.form} onSubmit={handleAddTask}>
+            <div className={styles.field}>
+              <label>Title</label>
+              <input
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                type="text"
+                placeholder="Task title"
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Subtitle</label>
+              <input
+                onChange={(e) => setSubTitle(e.target.value)}
+                value={subtitle}
+                type="text"
+                placeholder="Short task summary"
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Category</label>
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                value={category}
+              >
+                <option>Select category</option>
+                <option>Work</option>
+                <option>Personal</option>
+                <option>Study</option>
+                <option>Urgent</option>
+              </select>
+            </div>
+
+            <div className={styles.field}>
+              <label>Description</label>
+              <textarea
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                placeholder="Detailed task description"
+              ></textarea>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.field}>
+                <label>Deadline</label>
+                <input
+                  onChange={(e) => setDeadline(e.target.value)}
+                  value={deadline}
+                  type="date"
+                />
+              </div>
+
+              <div className={styles.field}>
+                <label>Status</label>
+                <select
+                  onChange={(e) => setStatus(e.target.value)}
+                  value={status}
+                >
+                 <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" className={styles.button}>Create Task</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TaskForm;

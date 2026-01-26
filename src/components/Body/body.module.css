@@ -24,9 +24,6 @@
     text-decoration:underline;
 }
   
-
-  
-
   .cards {
     position: relative;
     display: grid;
@@ -58,5 +55,28 @@
     font-size: 1rem;
     color: #555;
     line-height: 1.6;
+  }
+  
+  @media (max-width: 390px) {
+    .features {
+      padding: 60px 16px;
+    }
+  
+    .cards {
+      gap: 12px;
+    }
+  
+    .feature {
+      padding: 16px 10px;
+    }
+  
+    .feature h3 {
+      font-size: 0.9rem;
+    }
+  
+    .feature p {
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
   }
   

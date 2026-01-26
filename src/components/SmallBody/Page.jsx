@@ -5,8 +5,6 @@ import styles from "./SmallBody.module.css";
 
 const SmallBody = () => {
 
-
-
     const [canRun, setCanRun] = useState(false);
     
     const [num1 , setNum1] = useState(0);
@@ -37,13 +35,13 @@ const SmallBody = () => {
             if(num1 != 29){
             setNum1(prev => prev + 1);
             }
-            if(num2 != 52){
+            if(num2 != 79){
             setNum2(prev => prev + 1);
             }
-            if(num3 != 44){
+            if(num3 != 45){
             setNum3(prev => prev + 1);
             }
-        },60)
+        },40)
     },);
 
   return (

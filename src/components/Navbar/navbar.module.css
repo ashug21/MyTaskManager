@@ -99,16 +99,30 @@
   
   /* ---------- RESPONSIVE ---------- */
   
-  @media (max-width: 768px) {
-    .links {
+  @media (max-width: 390px) {
+    .logoText{
       display: none;
+    }
+    .links a {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .actions {
+      gap: 10px;
     }
   
-    .signIn {
-      display: none;
+    .signIn,
+    .primary {
+      padding: 8px 14px;
+      font-size: 12px;
     }
+ 
   }
   
+
+
+
   @media (max-width: 480px) {
     .logoText {
       font-size: 18px;

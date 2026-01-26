@@ -1,0 +1,105 @@
+.wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 560px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  }
+  
+  .title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #111827;
+    text-align: center;
+  }
+  
+  .subtitle {
+    margin-top: 6px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: #6b7280;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .field label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .field input,
+  .field textarea,
+  .field select {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.25s ease;
+    background: #ffffff;
+  }
+  
+  .field textarea {
+    min-height: 120px;
+    resize: none;
+  }
+  
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  }
+  
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .button {
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 14px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
+  }
+  
+  @media (max-width: 520px) {
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+  
