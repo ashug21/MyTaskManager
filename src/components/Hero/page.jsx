@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './hero.module.css'
+import Link from 'next/link'
 
 const Hero = () => {
   return (
@@ -20,7 +21,7 @@ const Hero = () => {
         </p>
 
         <div className={styles.heroActions}>
-          <button className={styles.primaryBtn}>Get Started</button>
+          <Link href="/addtask" className={styles.primaryBtn}>Get Started</Link>
           <button className={styles.secondaryBtn}>View Demo</button>
         </div>
       </div>

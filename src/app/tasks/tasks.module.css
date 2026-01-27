@@ -122,3 +122,25 @@
 .toggleBtn:hover {
   background: #4f46e5;
 }
+
+.emptyState {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.emptyState h2 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.emptyState p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #6b7280;
+}

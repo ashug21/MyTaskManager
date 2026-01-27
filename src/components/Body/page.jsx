@@ -4,7 +4,7 @@ import styles from "./body.module.css";
 const Body = () => {
   return (
     <section className={styles.features}>
-      <h2 className={styles.heading}>WHY CHOOSE US?</h2>
+      <h2 className={styles.heading}>Why TaskFlow?</h2>
 
       <div className={styles.cards}>
         <div className={styles.feature}>

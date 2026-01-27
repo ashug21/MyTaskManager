@@ -104,6 +104,22 @@
     color: #4a40ff;
     text-decoration: underline;
   }
+
+  .googleBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  
+    background: #f8fafc;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .googleBtn:hover {
+    background: #eef2ff;
+  }
+  
   
   @media (max-width: 500px) {
     .loginBox {

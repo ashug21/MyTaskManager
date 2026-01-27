@@ -1,7 +1,8 @@
 .features {
     position: relative;
     padding: 100px 10%;
-    background-image: url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");
+    background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,7 +20,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 60px;
-    color: #db5471;
+    color: #f3f2f6;
     letter-spacing: 0.3px;
     text-decoration:underline;
 }

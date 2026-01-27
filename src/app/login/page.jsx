@@ -5,6 +5,10 @@ import styles from "./login.module.css";
 import Navbar from "../../components/Navbar/page";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import toast from "react-hot-toast";
+import google_icon from '../../../public/google.png'
+import Image from "next/image";
+
 
 const Login = () => {
 
@@ -14,11 +18,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
 
+  async function handleGoogleLogin() {
+    await signIn("google", {
+      callbackUrl: "/",
+    });
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
-      alert("Both Fields are required");
+      toast.error("Both Fields are required");
       return;
     }
 
@@ -32,6 +43,7 @@ const Login = () => {
       console.log(result.error);
     } 
     else {
+      toast.success("Logged In successfully!")
       router.push("/");
     }
   };
@@ -58,6 +70,21 @@ const Login = () => {
           <button className={styles.loginBtn} type="submit">
             Login
           </button>
+          <button
+  onClick={handleGoogleLogin}
+  className={`${styles.loginBtn} ${styles.googleBtn}`}
+  type="button"
+>
+  <Image
+    src={google_icon}
+    alt="Google"
+    width={20}
+    height={20}
+    className={styles.googleIcon}
+  />
+  <span>Login with Google</span>
+</button>
+
         </form>
 
         <p className={styles.loginSignup}>

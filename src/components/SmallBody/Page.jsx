@@ -41,7 +41,7 @@ const SmallBody = () => {
             if(num3 != 45){
             setNum3(prev => prev + 1);
             }
-        },40)
+        },30)
     },);
 
   return (

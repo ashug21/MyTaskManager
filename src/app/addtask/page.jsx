@@ -3,8 +3,17 @@
 import Navbar from "@/components/Navbar/page";
 import styles from "./addtask.module.css";
 import { useState } from "react";
+import Footer from "@/components/Footer/page";
+import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const TaskForm = () => {
+
+
+  const { data: session} = useSession();
+  const router = useRouter();
+  
   const [title, setTitle] = useState("");
   const [subtitle, setSubTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -15,8 +24,21 @@ const TaskForm = () => {
 
   const handleAddTask = async(e) => {
     e.preventDefault();
+
+
+    if(!title || !subtitle || !category || !description || !deadline){
+      toast.error("All fields are required!");
+      return;
+    }
+
     try {
 
+      if (!session) {
+        toast.error("Please login to Add Task");
+        router.push("/login");
+        return;
+      }  
+      
        const res = await fetch("/api/addtask",{
 
         method : "POST",
@@ -40,7 +62,7 @@ const TaskForm = () => {
         return;
        }
 
-       alert("SuccessFully added Task");
+       toast.success("Task Added Successfully");
 
        setTitle("");
        setSubTitle("");
@@ -50,7 +72,7 @@ const TaskForm = () => {
        setDeadline("");
         
     } catch (error) {
-        console.log(error);
+      toast.error("Error Adding Task" + error);
     }
   }
 
@@ -98,6 +120,7 @@ const TaskForm = () => {
                 <option>Personal</option>
                 <option>Study</option>
                 <option>Urgent</option>
+                <option>Travel</option>
               </select>
             </div>
 
@@ -137,6 +160,7 @@ const TaskForm = () => {
           </form>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

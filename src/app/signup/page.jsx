@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./signup.module.css";
 import Navbar from "@/components/Navbar/page";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 
 const Signup = () => {
@@ -13,6 +14,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [reEnterPassword , setReEnterPassword] = useState("");
 
 
 
@@ -20,21 +22,27 @@ const Signup = () => {
     e.preventDefault();
 
     if (!name || !email || !password) {
+      toast.error("All Fields are required");
       return;
     }
 
-    // if(password.length < 8){
-    //   toast.error("Password should be of 8 digits");
-    //   return;
-    // }
+    if(password.length < 8){
+      toast.error("Password should be of 8 digits");
+      return;
+    }
 
-    // if(password === "12345678" || password === "password" || password === "00000000" || password === "11111111"
-    //   || password === "qwertyui"){
-    //   toast("Choose a Strong Password");
-    //   return;
-    // }
+    if(password === "12345678" || password === "password" || password === "00000000" || password === "11111111"
+      || password === "qwertyui"){
+      toast("Choose a Strong Password");
+      return;
+    }
 
-    // const loadingToast = toast.loading("Creating account...");
+    if(password != reEnterPassword){
+      toast.error("Both Passwords should be equal");
+      return;
+    }
+
+    const loadingToast = toast.loading("Creating account...");
 
     try {
       const res = await fetch("/api/auth/register", {
@@ -55,15 +63,15 @@ const Signup = () => {
         throw new Error(data.error || "Signup failed");
       }
 
-      // toast.success("Account created successfully");
+      toast.success("Account created successfully");
       router.push("/login");
     } catch (error) {
-      // toast.error(error.message);
+      toast.error(error.message);
       console.log(error);
     }
-    //  finally {
-    //   toast.dismiss(loadingToast);
-    // }
+     finally {
+      toast.dismiss(loadingToast);
+    }
   };
 
   return (
@@ -89,12 +97,12 @@ const Signup = () => {
 
           <div className={styles.formGroup}>
             <label>Password</label>
-            <input   onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Enter password" />
+            <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Enter password" />
           </div>
 
           <div className={styles.formGroup}>
             <label>Confirm Password</label>
-            <input type="password" placeholder="Re-enter password" />
+            <input onChange={(e) => setReEnterPassword(e.target.value)} value={reEnterPassword} type="password" placeholder="Re-enter password" />
           </div>
 
           <button type="submit" className={styles.signupBtn}>
