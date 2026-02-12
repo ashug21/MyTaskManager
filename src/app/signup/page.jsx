@@ -5,9 +5,15 @@ import styles from "./signup.module.css";
 import Navbar from "@/components/Navbar/page";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link";
+import { useContext } from "react";
+import { ThemeContext } from "@/Context/Theme";
+
 
 
 const Signup = () => {
+  const { dark } = useContext(ThemeContext);
+
 
   const router = useRouter();
 
@@ -77,7 +83,9 @@ const Signup = () => {
   return (
     <div>
         <Navbar/>
-<div className={styles.signupWrapper}>
+        <br/><br/> <br/><br/>
+        <div className={`${styles.signupWrapper} ${dark === "dark" ? styles.dark : ""}`}>
+
       <div className={styles.signupBox}>
         <h2 className={styles.signupHeading}>Create Account</h2>
         <p className={styles.signupSubtext}>
@@ -111,7 +119,7 @@ const Signup = () => {
         </form>
 
         <p className={styles.signupLogin}>
-          Already have an account? <a href="/login">Log in</a>
+          Already have an account? <Link href="/login">Log in</Link>
         </p>
       </div>
     </div>

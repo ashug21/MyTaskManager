@@ -1,9 +1,12 @@
 "use client";
 
-import React, { useEffect, useState , useRef } from "react";
+import React, { useEffect, useState , useRef , useContext} from "react";
 import styles from "./SmallBody.module.css";
+import { ThemeContext } from "@/Context/Theme";
 
 const SmallBody = () => {
+
+   const {dark , setDark} = useContext(ThemeContext);
 
     const [canRun, setCanRun] = useState(false);
     
@@ -45,7 +48,7 @@ const SmallBody = () => {
     },);
 
   return (
-    <section className={styles.wrapper}>
+<section className={`${styles.wrapper} ${dark === "dark" ? styles.dark : ""}`}>
       <div className={styles.overlay}></div>
 
       <div className={styles.container}>

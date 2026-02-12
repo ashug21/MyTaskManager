@@ -2,18 +2,25 @@
 
 import Navbar from "@/components/Navbar/page";
 import styles from "./addtask.module.css";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import Footer from "@/components/Footer/page";
 import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { ThemeContext } from "@/Context/Theme";
 
 const TaskForm = () => {
+  const { dark } = useContext(ThemeContext);
 
+  const [mounted, setMounted] = useState(false);
 
-  const { data: session} = useSession();
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { data: session } = useSession();
   const router = useRouter();
-  
+
   const [title, setTitle] = useState("");
   const [subtitle, setSubTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -21,67 +28,68 @@ const TaskForm = () => {
   const [deadline, setDeadline] = useState("");
   const [status, setStatus] = useState("");
 
-
-  const handleAddTask = async(e) => {
+  const handleAddTask = async (e) => {
     e.preventDefault();
 
-
-    if(!title || !subtitle || !category || !description || !deadline){
+    if (!title || !subtitle || !category || !description || !deadline) {
       toast.error("All fields are required!");
       return;
     }
 
     try {
-
       if (!session) {
         toast.error("Please login to Add Task");
         router.push("/login");
         return;
-      }  
-      
-       const res = await fetch("/api/addtask",{
+      }
 
-        method : "POST",
-        headers : {
-            "Content-Type" : "application/json"
+      const res = await fetch("/api/addtask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        body : JSON.stringify({
-            title , 
-            subtitle , 
-            category , 
-            description , 
-            deadline , 
-            status
-        })
-       });
+        body: JSON.stringify({
+          title,
+          subtitle,
+          category,
+          description,
+          deadline,
+          status,
+        }),
+      });
 
-       const data = await res.json();
+      const data = await res.json();
 
-       if(!res.ok){
+      if (!res.ok) {
         console.log("Error adding task");
         return;
-       }
+      }
 
-       toast.success("Task Added Successfully");
+      toast.success("Task Added Successfully");
 
-       setTitle("");
-       setSubTitle("");
-       setCategory("");
-       setDescription("");
-       setStatus("");
-       setDeadline("");
-        
+      setTitle("");
+      setSubTitle("");
+      setCategory("");
+      setDescription("");
+      setStatus("");
+      setDeadline("");
     } catch (error) {
       toast.error("Error Adding Task" + error);
     }
-  }
-
+  };
 
   return (
     <div>
       <Navbar />
-      <br/><br/><br/>
-      <div className={styles.wrap}>
+      <br />
+      <br />
+      <br />
+
+      <div
+        className={`${styles.wrap} ${
+          mounted && dark === "dark" ? styles.dark : ""
+        }`}
+      >
         <div className={styles.card}>
           <h2 className={styles.title}>Create Task</h2>
           <p className={styles.subtitle}>
@@ -149,18 +157,20 @@ const TaskForm = () => {
                   onChange={(e) => setStatus(e.target.value)}
                   value={status}
                 >
-                 <option value="pending">Pending</option>
-                <option value="completed">Completed</option>
-
+                  <option value="pending">Pending</option>
+                  <option value="completed">Completed</option>
                 </select>
               </div>
             </div>
 
-            <button type="submit" className={styles.button}>Create Task</button>
+            <button type="submit" className={styles.button}>
+              Create Task
+            </button>
           </form>
         </div>
       </div>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 };

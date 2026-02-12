@@ -1,9 +1,14 @@
 import Image from "next/image";
 import styles from "./analyticslook.module.css";
+import { useContext } from "react";
+import { ThemeContext } from "@/Context/Theme";
+
 
 const AnalyticsLook = () => {
+  const { dark } = useContext(ThemeContext);
+
   return (
-    <section className={styles.wrapper}>
+    <section className={`${styles.wrapper} ${dark === "dark" ? styles.dark : ""}`}>
       <div className={styles.container}>
         <div className={styles.left}>
           <h1>Track Progress With Clarity</h1>

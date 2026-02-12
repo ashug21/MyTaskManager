@@ -85,6 +85,27 @@
   box-shadow: 0 35px 80px rgba(0, 0, 0, 0.18);
 }
 
+.dark {
+  background: #020617;
+}
+
+.dark .lead {
+  color: #cbd5e1;
+}
+
+.dark .insight h3 {
+  color: #f8fafc;
+}
+
+.dark .insight p {
+  color: #cbd5e1;
+}
+
+.dark .image {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+
 @media (max-width: 900px) {
   .container {
     grid-template-columns: 1fr;

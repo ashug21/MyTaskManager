@@ -1,9 +1,14 @@
 import Image from "next/image";
 import styles from "./tasklook.module.css";
+import { useContext } from "react";
+import { ThemeContext } from "@/Context/Theme";
+
 
 const TaskLook = () => {
+  const { dark } = useContext(ThemeContext);
+
   return (
-    <section className={styles.wrapper}>
+   <section className={`${styles.wrapper} ${dark === "dark" ? styles.dark : ""}`}>
       <div className={styles.container}>
         <div className={styles.left}>
           <Image

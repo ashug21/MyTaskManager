@@ -86,14 +86,16 @@
   background: #1d4ed8;
 }
 
-/* ---------- RIGHT MOST ---------- */
-
 .rightEnd {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   margin-left: auto;
+  flex: 1;
+  justify-content: flex-end;
 }
+
+
 .profileIcon {
   width: 36px;
   height: 36px;
@@ -107,7 +109,65 @@
   border-color: #2563eb;
 }
 
-/* ---------- RESPONSIVE ---------- */
+.darkToggle {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+
+.dark {
+  background: rgba(17, 24, 39, 0.9);
+  border-bottom: 1px solid #1f2933;
+}
+
+.dark .logoText {
+  color: #f9fafb;
+}
+
+.dark .links a {
+  color: #e5e7eb;
+}
+
+.dark .signIn,
+.dark .darkToggle {
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+.dark .signIn:hover,
+.dark .darkToggle:hover {
+  background: #1f2937;
+}
+
+.dark .primary {
+  background: #3b82f6;
+}
+
+.dark .primary:hover {
+  background: #2563eb;
+}
+
+.dark .profileIcon {
+  border-color: #374151;
+}
+
+
+
+.darkToggle:hover {
+  background: #f3f4f6;
+  border-color: #2563eb;
+}
 
 .hideOnMobile {
   display: inline;
@@ -131,6 +191,11 @@
   .signIn,
   .primary {
     padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .darkToggle {
+    padding: 6px 10px;
     font-size: 12px;
   }
 }

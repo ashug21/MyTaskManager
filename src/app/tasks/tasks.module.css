@@ -4,11 +4,19 @@
   background: linear-gradient(135deg, #eef2ff, #f8fafc);
 }
 
+.page.dark {
+  background: #020617;
+}
+
 .heading {
   font-size: 32px;
   font-weight: 600;
   color: #111827;
   margin-bottom: 30px;
+}
+
+.page.dark .heading {
+  color: #f8fafc;
 }
 
 .grid {
@@ -25,9 +33,14 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.page.dark .card {
+  background: #0f172a;
+  border: 1px solid #1f2937;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
 
 .cardHeader {
@@ -77,10 +90,18 @@
   margin-bottom: 4px;
 }
 
+.page.dark .title {
+  color: #f8fafc;
+}
+
 .subtitle {
   font-size: 14px;
   color: #6b7280;
   margin-bottom: 12px;
+}
+
+.page.dark .subtitle {
+  color: #cbd5e1;
 }
 
 .description {
@@ -88,6 +109,10 @@
   color: #374151;
   line-height: 1.6;
   margin-bottom: 18px;
+}
+
+.page.dark .description {
+  color: #e2e8f0;
 }
 
 .footer {
@@ -131,6 +156,10 @@
   text-align: center;
 }
 
+.emptyState.dark {
+  background: #020617;
+}
+
 .emptyState h2 {
   font-size: 28px;
   font-weight: 700;
@@ -143,4 +172,8 @@
   margin-top: 10px;
   font-size: 16px;
   color: #6b7280;
+}
+
+.page.dark .emptyState p {
+  color: #cbd5e1;
 }

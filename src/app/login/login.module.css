@@ -119,6 +119,51 @@
   .googleBtn:hover {
     background: #eef2ff;
   }
+
+  .dark {
+    background: #020617;
+  }
+  
+  .dark .loginBox {
+    background: #020617;
+    border: 1px solid #1f2937;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  }
+  
+  .dark .loginHeading {
+    color: #f8fafc;
+  }
+  
+  .dark .loginSubtext {
+    color: #cbd5e1;
+  }
+  
+  .dark label {
+    color: #e5e7eb;
+  }
+  
+  .dark input {
+    background: #020617;
+    color: #f8fafc;
+    border: 1px solid #374151;
+  }
+  
+  .dark input::placeholder {
+    color: #94a3b8;
+  }
+  
+  .dark input:focus {
+    border-color: #3b82f6;
+  }
+  
+  .dark .loginSignup {
+    color: #cbd5e1;
+  }
+  
+  .dark .loginSignup a {
+    color: #60a5fa;
+  }
+  
   
   
   @media (max-width: 500px) {

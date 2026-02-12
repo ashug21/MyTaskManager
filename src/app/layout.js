@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "../../providers";
 import ToasterClient from "@/components/ToasterClient";
+import Theme from "@/Context/Theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
       >
         <Providers> 
           <ToasterClient/>
-           {children}
+          <Theme>
+          {children}
+            </Theme>
         </Providers>
       
       </body>
